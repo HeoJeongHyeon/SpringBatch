@@ -36,10 +36,11 @@ public class DataDBConfig {
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
         HashMap<String, Object> properties = new HashMap<>();
-        properties.put("hibernate.hbm2ddl.auto", "create");
+        properties.put("hibernate.hbm2ddl.auto", "update");
         properties.put("hibernate.show_sql", true);
         em.setJpaPropertyMap(properties);
         return em;
+
     }
 
     @Bean
@@ -47,7 +48,6 @@ public class DataDBConfig {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
 
         transactionManager.setEntityManagerFactory(dataEntityManager().getObject());
-
         return transactionManager;
     }
 }
